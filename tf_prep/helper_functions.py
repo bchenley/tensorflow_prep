@@ -96,5 +96,18 @@ def plot_loss(history,n_fig):
   # ax[1].title('Accuracy')
   # ax[1].xlabel('Epochs')
   #
+##
 
+## get image training and test data using tf.keras.preprocessing.image_dataset_from_directory
+def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,batch_size):
+  train_data = tf.keras.preprocessing.image_dataset_from_directory(directory = train_dir,
+                                                                              image_size = image_size,
+                                                                              label_mode = label_mode,
+                                                                              batch_size = batch_size)
+
+  test_data = tf.keras.preprocessing.image_dataset_from_directory(directory = test_dir,
+                                                                  image_size = IMAGE_SIZE,
+                                                                  label_mode = label_mode,
+                                                                  batch_size = BATCH_SIZE)
+  return train_data, test_data
 ##
