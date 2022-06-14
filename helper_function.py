@@ -21,7 +21,7 @@ def unzip_data(zip_file):
 
 ## walk through directory
 def dir_walk(dir):
-  for dirpath, dirnames, filenames in os.walk(dir) # "10_food_classes_10_percent"):
+  for dirpath, dirnames, filenames in os.walk(dir):
     print(f"{len(dirnames)} directories and {len(filenames)} in '{dirpath}'.")
 ##
 
