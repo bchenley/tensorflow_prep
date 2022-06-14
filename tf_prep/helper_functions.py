@@ -106,9 +106,9 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
                                                                               batch_size = batch_size)
 
   test_data = tf.keras.preprocessing.image_dataset_from_directory(directory = test_dir,
-                                                                  image_size = IMAGE_SIZE,
+                                                                  image_size = image_size,
                                                                   label_mode = label_mode,
-                                                                  batch_size = BATCH_SIZE)
+                                                                  batch_size = batch_size)
   return train_data, test_data
 ##
 
