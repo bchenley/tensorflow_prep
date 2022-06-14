@@ -114,7 +114,7 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
 
 ## create model from base (#1)
 def fit_base_model_1(train_data, test_data, 
-                     base_model, base_model_top, base_model_trainable, 
+                     base_model, base_model_trainable, 
                      input_shape, normalize_inputs,
                      num_outputs, output_activition,
                      loss, optimizer, metrics, 
