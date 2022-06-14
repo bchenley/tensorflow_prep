@@ -111,3 +111,62 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
                                                                   batch_size = BATCH_SIZE)
   return train_data, test_data
 ##
+
+## create model from base (#1)
+def fit_base_model_1(train_data, test_data, 
+                     base_model, base_model_top, base_model_trainable, 
+                     input_shape, normalize_inputs,
+                     num_outputs, output_activition,
+                     loss, optimizer, metrics, 
+                     epochs, pct_validate,
+                     callback):
+
+  # 1. base model trainabble ?
+  base_model.trainable = base_model_trainable
+  #
+
+  # 2. create inputs into our model
+  inputs = tf.keras.layers.Input(shape=input_shape, name="input_layer")
+  #
+
+  # 3. normalize inputs
+  if normalize_inputs:
+    inputs = tf.keras.layers.experimental.preprocessing.Rescaling(1./255)(inputs)
+  #
+
+  # 4. pass inputs to base model
+  h_base = base_model(inputs)
+  #
+
+  print(f"shape of base model output: {h_base.shape}")
+
+  # 5. Average pool outputs
+  h_avg = tf.keras.layers.GlobalAveragePooling2D(name="global_average_pooling_layer")(h_base)
+  #
+
+  print(f"shape of average pooling output: {h_avg.shape}")
+
+  # 6. create output activation layer
+  outputs = tf.keras.layers.Dense(num_outputs, activation=output_activition, name = "output_layer")(h_avg)
+  #
+
+  # 7. create main model
+  model = tf.keras.Model(inputs, outputs)
+  #
+
+  # 8. compile model
+  model.compile(loss = loss,
+                optimizer = optimizer,
+                metrics = metrics)
+  #
+
+  # 9. fit model
+  history = model.fit(train_data,
+                      epochs = epochs,
+                      steps_per_epoch = len(train_data),
+                      validation_data = test_data,
+                      validation_steps = int(pct_validate * len(test_data)),
+                      callbacks = callback)
+  #
+  return model, history
+##
