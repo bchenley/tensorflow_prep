@@ -101,9 +101,9 @@ def plot_loss(history,n_fig):
 ## get image training and test data using tf.keras.preprocessing.image_dataset_from_directory
 def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,batch_size):
   train_data = tf.keras.preprocessing.image_dataset_from_directory(directory = train_dir,
-                                                                              image_size = image_size,
-                                                                              label_mode = label_mode,
-                                                                              batch_size = batch_size)
+                                                                   image_size = image_size,
+                                                                   label_mode = label_mode,
+                                                                   batch_size = batch_size)
 
   test_data = tf.keras.preprocessing.image_dataset_from_directory(directory = test_dir,
                                                                   image_size = image_size,
