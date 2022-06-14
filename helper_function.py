@@ -13,18 +13,11 @@ import matplotlib.pyplot as plt
 ##
 
 ## unzip data
-def unzip_data(zip_path,zip_file):
-  # download file
-  !wget zip_path # https://storage.googleapis.com/ztm_tf_course/food_vision/10_food_classes_10_percent.zip
-  #
-
-  # unzip file
-  zip_ref = zipfile.ZipFile(zip_file) # "10_food_classes_10_percent.zip")
+def unzip_data(zip_file):  
+  zip_ref = zipfile.ZipFile(zip_file) 
   zip_ref.extractall()
   zip_ref.close()
-  #
 ##
-
 
 ## walk through directory
 def dir_walk(dir):
