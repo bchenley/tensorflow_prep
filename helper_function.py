@@ -1,3 +1,17 @@
+## dependencies
+import os
+import datetime
+import zipfile 
+import tensorflow as tf
+import tensorflow_hub as hub
+from tensorflow.keras.callbacks import TensorBoard as tb
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras import layers
+from tensorflow.python.ops.check_ops import NUMERIC_TYPES
+
+import matplotlib.pyplot as plt
+##
+
 ## Create TB callback
 def create_tb_callback(dir_name, experiment_name):
   log_dir = dir_name + "/" + experiment_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
