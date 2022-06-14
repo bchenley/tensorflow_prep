@@ -12,6 +12,26 @@ from tensorflow.python.ops.check_ops import NUMERIC_TYPES
 import matplotlib.pyplot as plt
 ##
 
+## unzip data
+def unzip_data(zip_path,zip_file):
+  # download file
+  !wget zip_path # https://storage.googleapis.com/ztm_tf_course/food_vision/10_food_classes_10_percent.zip
+  #
+
+  # unzip file
+  zip_ref = zipfile.ZipFile(zip_file) # "10_food_classes_10_percent.zip")
+  zip_ref.extractall()
+  zip_ref.close()
+  #
+##
+
+
+## walk through directory
+def dir_walk(dir):
+  for dirpath, dirnames, filenames in os.walk(dir) # "10_food_classes_10_percent"):
+    print(f"{len(dirnames)} directories and {len(filenames)} in '{dirpath}'.")
+##
+
 ## Create TB callback
 def create_tb_callback(dir_name, experiment_name):
   log_dir = dir_name + "/" + experiment_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
