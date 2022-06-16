@@ -1,16 +1,19 @@
-# ## dependencies
-# import os
-# import datetime
-# import zipfile 
-# import tensorflow as tf
-# import tensorflow_hub as hub
-# from tensorflow.keras.callbacks import TensorBoard as tb
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator
-# from tensorflow.keras import layers
-# from tensorflow.python.ops.check_ops import NUMERIC_TYPES
+## dependencies
+import os
+import datetime
+import zipfile
+import tensorflow as tf
+import tensorflow_hub as hub
+from tensorflow.keras.callbacks import TensorBoard as tb
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras import layers
+from tensorflow.keras import preprocessing
+from tensorflow.keras.layers.experimental import preprocessing as experimental_preprocessing
+from tensorflow.keras import Sequential
+from tensorflow.python.ops.check_ops import NUMERIC_TYPES
 
-# import matplotlib.pyplot as plt
-# ##
+import matplotlib.pyplot as plt
+##
 
 ## unzip data
 def unzip_data(zip_file):  
