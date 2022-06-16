@@ -1,7 +1,7 @@
 ## dependencies
 import os
 import datetime
-import zipfile
+from zipfile import ZipFile
 import tensorflow as tf
 import tensorflow_hub as hub
 from tensorflow.keras.callbacks import TensorBoard as tb
@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 ## unzip data
 def unzip_data(zip_file):  
-  zip_ref = zipfile.ZipFile(zip_file) 
+  zip_ref = ZipFile(zip_file) 
   zip_ref.extractall()
   zip_ref.close()
 ##
