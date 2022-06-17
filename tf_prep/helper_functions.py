@@ -121,7 +121,8 @@ def fit_base_model_1(train_data, test_data,
                      input_shape, aug,
                      num_outputs, output_activition,
                      loss, optimizer, metrics, 
-                     epochs, pct_validate,
+                     epochs, inital_epoch, 
+                     pct_validate,
                      callback):
 
   # 1. base model trainabble ?
@@ -166,6 +167,7 @@ def fit_base_model_1(train_data, test_data,
   # 9. fit model
   history = model.fit(train_data,
                       epochs = epochs,
+                      initial_epoch = initial_epoch,
                       steps_per_epoch = len(train_data),
                       validation_data = test_data,
                       validation_steps = int(pct_validate * len(test_data)),
