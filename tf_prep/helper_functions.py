@@ -4,7 +4,7 @@ import datetime
 from zipfile import ZipFile
 import tensorflow as tf
 import tensorflow_hub as hub
-from tensorflow.keras.callbacks import TensorBoard as tb
+from tensorflow.keras import callbacks 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import layers
 from tensorflow.keras import preprocessing
@@ -31,7 +31,7 @@ def dir_walk(dir):
 ## Create TB callback
 def create_tb_callback(dir_name, experiment_name):
   log_dir = dir_name + "/" + experiment_name + "/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-  tb_callback = tb(log_dir=log_dir)
+  tb_callback = callbacks.TensorBoard(log_dir=log_dir)
   print(f"Saving TB log to '{log_dir}'")
   return tb_callback
 ##
