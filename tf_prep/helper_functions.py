@@ -121,7 +121,7 @@ def fit_base_model_1(train_data, test_data,
                      input_shape, aug,
                      num_outputs, output_activition,
                      loss, optimizer, metrics, 
-                     epochs, inital_epoch, 
+                     epochs, initial_epoch, 
                      pct_validate,
                      callback):
 
