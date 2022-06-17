@@ -125,12 +125,11 @@ def fit_base_model_1(train_data, test_data,
                      epochs, initial_epoch, 
                      pct_validate,
                      callback):
-
+  
   # 1. base model trainabble ?
   # base_model.trainable = base_model_trainable
-  if base_model_trainable:
-    for i in enumerate(base_model_trainable):
-      base_model.layers[i].trainable = base_model_trainable[i]  
+  for i in np.where(base_model_trainable)[0]:
+    base_model.layers[i].trainable = base_model_trainable[i]  
   #
 
   # 2. create inputs into our model
