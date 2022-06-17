@@ -12,6 +12,7 @@ from tensorflow.keras.layers.experimental import preprocessing as experimental_p
 from tensorflow.keras import Sequential
 from tensorflow.python.ops.check_ops import NUMERIC_TYPES
 
+import numpy as np
 import matplotlib.pyplot as plt
 ##
 
