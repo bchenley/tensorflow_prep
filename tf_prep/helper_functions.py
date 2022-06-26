@@ -118,13 +118,15 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
 
 ## create model from base (#1)
 def fit_base_model_1(train_data, test_data, 
-                     base_model, 
+                     base_model, base_model_trainable, 
                      input_shape, aug,
                      num_outputs, output_activition,
                      loss, optimizer, metrics, 
                      epochs, initial_epoch, 
                      pct_validate,
                      callback):
+
+  base_model.trainable = base_model_trainable
 
   # 1. create inputs into our model
   inputs = tf.keras.layers.Input(shape=input_shape, name="input_layer")
