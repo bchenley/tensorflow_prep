@@ -126,7 +126,8 @@ def fit_base_model_1(train_data, test_data,
                      pct_validate,
                      callback):
 
-  base_model.trainable = base_model_trainable
+  for layer,trainable in zip(base_model.layers,base_model_trainable):
+      layer.trainable = trainable
 
   # 1. create inputs into our model
   inputs = tf.keras.layers.Input(shape=input_shape, name="input_layer")
