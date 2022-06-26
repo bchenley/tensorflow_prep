@@ -128,8 +128,10 @@ def fit_base_model_1(train_data, test_data,
   
   # 1. base model trainabble ?
   # base_model.trainable = base_model_trainable
-  for i in np.where(base_model_trainable)[0]:
-    base_model.layers[i].trainable = base_model_trainable[i]  
+  assert len(base_model_trainable) == len(base_model.layers)
+  
+  for i in range(len(base_model_trainable)):
+      base_model.layers[i].trainable = base_model_trainable[i]
   #
 
   # 2. create inputs into our model
