@@ -118,58 +118,50 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
 
 ## create model from base (#1)
 def fit_base_model_1(train_data, test_data, 
-                     base_model, base_model_trainable, 
+                     base_model, 
                      input_shape, aug,
                      num_outputs, output_activition,
                      loss, optimizer, metrics, 
                      epochs, initial_epoch, 
                      pct_validate,
                      callback):
-  
-  # 1. base model trainabble ?
-  # base_model.trainable = base_model_trainable
-  assert len(base_model_trainable) == len(base_model.layers)
-  
-  for i in range(len(base_model_trainable)):
-      base_model.layers[i].trainable = base_model_trainable[i]
-  #
 
-  # 2. create inputs into our model
+  # 1. create inputs into our model
   inputs = tf.keras.layers.Input(shape=input_shape, name="input_layer")
   #
 
-  # 3. augment features
+  # 2. augment features
   if aug:
     inputs = aug(inputs)
   #
   
-  # 4. pass inputs to base model
+  # 3. pass inputs to base model
   h_base = base_model(inputs)
   #
 
   print(f"shape of base model output: {h_base.shape}")
 
-  # 5. Average pool outputs
+  # 4. Average pool outputs
   h_avg = tf.keras.layers.GlobalAveragePooling2D(name="global_average_pooling_layer")(h_base)
   #
 
   print(f"shape of average pooling output: {h_avg.shape}")
 
-  # 6. create output activation layer
+  # 5. create output activation layer
   outputs = tf.keras.layers.Dense(num_outputs, activation=output_activition, name = "output_layer")(h_avg)
   #
 
-  # 7. create main model
+  # 6. create main model
   model = tf.keras.Model(inputs, outputs)
   #
-
-  # 8. compile model
+  
+  # 7. compile model
   model.compile(loss = loss,
                 optimizer = optimizer,
                 metrics = metrics)
   #
 
-  # 9. fit model
+  # 8. fit model
   history = model.fit(train_data,
                       epochs = epochs,
                       initial_epoch = initial_epoch,
