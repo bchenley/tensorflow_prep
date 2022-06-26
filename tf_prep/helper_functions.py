@@ -117,7 +117,7 @@ def image_train_test_from_directory(train_dir,test_dir,image_size,label_mode,bat
 ##
 
 ## create model from base (#1)
-def fit_base_model_1(train_data, test_data, 
+def fit_base_model(train_data, test_data, 
                      base_model, base_model_trainable, 
                      input_shape, aug,
                      num_outputs, output_activition,
@@ -165,6 +165,31 @@ def fit_base_model_1(train_data, test_data,
   #
 
   # 8. fit model
+  history = model.fit(train_data,
+                      epochs = epochs,
+                      initial_epoch = initial_epoch,
+                      steps_per_epoch = len(train_data),
+                      validation_data = test_data,
+                      validation_steps = int(pct_validate * len(test_data)),
+                      callbacks = callback)
+  #
+  return model, history
+##
+
+def finetune_model(train_data, test_data, 
+                     model,                      
+                     loss, optimizer, metrics, 
+                     epochs, initial_epoch, 
+                     pct_validate,
+                     callback):
+
+  # 1. compile model
+  model.compile(loss = loss,
+                optimizer = optimizer,
+                metrics = metrics)
+  #
+
+  # 2. fit model
   history = model.fit(train_data,
                       epochs = epochs,
                       initial_epoch = initial_epoch,
