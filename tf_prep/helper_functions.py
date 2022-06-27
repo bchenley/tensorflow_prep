@@ -139,7 +139,7 @@ def fit_base_model(train_data, test_data,
   #
   
   # 3. pass inputs to base model
-  h_base = base_model(inputs)
+  h_base = base_model(inputs, training = False)
   #
 
   print(f"shape of base model output: {h_base.shape}")
