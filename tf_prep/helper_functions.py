@@ -151,7 +151,7 @@ def fit_base_model(train_data, test_data,
   print(f"shape of average pooling output: {h_avg.shape}")
 
   # 5. create output activation layer
-  outputs = tf.keras.layers.Dense(num_outputs, activation=output_activition, name = "output_layer")(h_avg)
+  outputs = tf.keras.layers.Dense(num_outputs, activation=output_activation, name = "output_layer")(h_avg)
   #
 
   # 6. create main model
