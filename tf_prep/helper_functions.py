@@ -200,3 +200,33 @@ def finetune_model(train_data, test_data,
   #
   return model, history
 ##
+
+def compare_histories(hist1, hist2, initial_epochs):
+    '''
+    Compare two TF histories
+    '''
+
+    acc1, loss1, val_acc1, val_loss1 = hist1.history["accuracy"], hist1.history["loss"], hist1.history["val_accuracy"], hist1.history["val_loss"]
+    acc2, loss2, val_acc2, val_loss2 = hist2.history["accuracy"], hist2.history["loss"], hist2.history["val_accuracy"], hist2.history["val_loss"]
+
+    acc12, val_acc12 = acc1 + acc2, val_acc1 + val_acc2
+    loss12, val_loss12 = loss1 + loss2, val_loss1 + val_loss2
+
+    plt.figure(figsize=(8,8))
+    plt.subplot(2, 1, 1)
+    plt.plot(acc12, label="train acc")
+    plt.plot(loss12, label="trian loss")
+
+    plt.plot([initial_epochs-1, initial_epochs-1], plt.ylim(), label='Begin Fine Tuning')
+    plt.legend(loc='lower right')
+    plt.title("Training and Validation")
+
+    plt.subplot(2, 1, 2)
+    plt.plot(val_acc12, label="val acc")
+    plt.plot(val_loss12, label="val loss")
+
+    plt.plot([initial_epochs-1, initial_epochs-1], plt.ylim(), label='Begin Fine Tuning')
+    plt.legend(loc='lower right')
+    plt.title("Training and Validation")
+
+    return acc12, val_acc12, loss12, val_loss12
